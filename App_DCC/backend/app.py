@@ -3,17 +3,33 @@ from flask import Flask, render_template, request, jsonify
 import pymongo
 from flask_pymongo import PyMongo
 
+import logging
+from jaeger_client import Config
+from opentracing_instrumentation.request_context import get_current_span, span_in_context
+from flask_opentracing import FlaskTracer
+
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'example-mongodb'
-#app.config['MONGO_URI'] = 'mongodb://example-mongodb-svc.default.svc.cluster.local:27017/example-mongodb'
-app.config['MONGO_URI'] = 'mongodb://local:27017/example-mongodb'
+app.config['MONGO_URI'] = 'mongodb://example-mongodb-svc.default.svc.cluster.local:27017/example-mongodb'
+#app.config['MONGO_URI'] = 'localhost:27017'
+
+def initialize_tracer():
+  config = Config(
+      config={
+          'sampler': {'type': 'const', 'param': 1}
+      },
+      service_name='backend')
+  return config.initialize_tracer() # also sets opentracing.tracer
 
 mongo = PyMongo(app)
 
+flask_tracer = FlaskTracer(initialize_tracer, True, app)
+
 @app.route('/')
 def homepage():
-    return "Hello World"
+    hw = "Hello World"
+    return(hw)
 
 
 @app.route('/api')
