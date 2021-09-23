@@ -7,6 +7,7 @@ import logging
 from jaeger_client import Config
 from opentracing_instrumentation.request_context import get_current_span, span_in_context
 from flask_opentracing import FlaskTracer
+from jaeger_client.metrics.prometheus import PrometheusMetricsFactory
 
 app = Flask(__name__)
 
@@ -19,7 +20,9 @@ def initialize_tracer():
       config={
           'sampler': {'type': 'const', 'param': 1}
       },
-      service_name='backend')
+      service_name='backend',
+      validate=True,
+      metrics_factory=PrometheusMetricsFactory(service_name_label='backend') )
   return config.initialize_tracer() # also sets opentracing.tracer
 
 mongo = PyMongo(app)

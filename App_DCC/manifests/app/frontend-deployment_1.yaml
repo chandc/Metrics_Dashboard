@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: frontend-app
   annotations:
-    "sidecar.jaegertracing.io/inject": "simplest" 
+    "sidecar.jaegertracing.io/inject": "jaeger-client"
 spec:
   replicas: 3
   selector:
@@ -31,3 +31,4 @@ spec:
         - port: 8080
           targetPort: 8080
     type: LoadBalancer
+
