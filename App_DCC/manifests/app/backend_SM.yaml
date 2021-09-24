@@ -41,7 +41,7 @@ spec:
   ports:
     - name: backend
       protocol: TCP
-      port: 8081
+      port: 80
       targetPort: backendport
   type: LoadBalancer
 ---

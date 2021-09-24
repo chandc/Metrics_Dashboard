@@ -14,14 +14,21 @@ from opentelemetry.sdk.trace.export import (
     SimpleExportSpanProcessor,
 )
 
+from prometheus_flask_exporter import PrometheusMetrics
+
+
 trace.set_tracer_provider(TracerProvider())
 trace.get_tracer_provider().add_span_processor(
     SimpleExportSpanProcessor(ConsoleSpanExporter())
 )
 
+
+
 app = Flask(__name__)
 FlaskInstrumentor().instrument_app(app)
 RequestsInstrumentor().instrument()
+
+metrics = PrometheusMetrics(app)
 
 
 #config = Config(

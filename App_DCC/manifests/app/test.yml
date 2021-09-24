@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ericcgu/backend
+        image: chandc/backend:latest
         imagePullPolicy: Always
         ports:
         - name: backendport
@@ -41,7 +41,7 @@ spec:
   ports:
     - name: backend
       protocol: TCP
-      port: 8081
+      port: 80
       targetPort: backendport
   type: LoadBalancer
 ---

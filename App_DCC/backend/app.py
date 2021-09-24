@@ -8,8 +8,12 @@ from jaeger_client import Config
 from opentracing_instrumentation.request_context import get_current_span, span_in_context
 from flask_opentracing import FlaskTracer
 from jaeger_client.metrics.prometheus import PrometheusMetricsFactory
+from prometheus_flask_exporter import PrometheusMetrics
 
 app = Flask(__name__)
+
+metrics = PrometheusMetrics(app)
+
 
 app.config['MONGO_DBNAME'] = 'example-mongodb'
 app.config['MONGO_URI'] = 'mongodb://example-mongodb-svc.default.svc.cluster.local:27017/example-mongodb'

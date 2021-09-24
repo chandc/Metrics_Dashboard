@@ -8,3 +8,4 @@ opentracing==2.4.0
 opentracing-instrumentation==3.3.1              
 Flask-OpenTracing==1.1.0              
 jaeger-client==4.6.1   
+prometheus-flask-exporter==0.18.2
