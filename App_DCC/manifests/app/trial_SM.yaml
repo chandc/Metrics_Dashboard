@@ -5,60 +5,60 @@ metadata:
     sidecar.jaegertracing.io/inject: 'true'
     prometheus.io/scrape: "true"
     prometheus.io/path: /metrics
-    prometheus.io/port: backendport
+    prometheus.io/port: trialport
   labels:
-    name: backend
+    name: trial
     release: prometheus
-  name: backend
+  name: trial
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: backend
+      app: trial
   template:
     metadata:
       labels:
-        app: backend
+        app: trial
     spec:
       containers:
-      - name: backend
-        image: chandc/backend:latest
+      - name: trial
+        image: chandc/trial:latest
         imagePullPolicy: Always
         ports:
-        - name: backendport
+        - name: trialport
           containerPort: 8080
           protocol: TCP
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: trial-service
   labels:
-    app: backend
+    app: trial
 spec:
   selector:
-    app: backend
+    app: trial
   ports:
-    - name: backend
+    - name: trial
       protocol: TCP
-      port: 8081
-      targetPort: backendport
+      port: 8088
+      targetPort: trialport
   type: LoadBalancer
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: backend
+  name: trial
   namespace: monitoring
   labels:
-    app: backend
+    app: trial
     release: prometheus
 spec:
   selector:
     matchLabels:
-      app: backend
+      app: trial
   endpoints:
-  - port: backend
+  - port: trial
     path: /metrics
     interval: 15s
   namespaceSelector:

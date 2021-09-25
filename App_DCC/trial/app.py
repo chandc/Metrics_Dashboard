@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
-
+import logging
+import requests
 from jaeger_client import Config
 from jaeger_client.metrics.prometheus import PrometheusMetricsFactory
 from opentelemetry import trace
