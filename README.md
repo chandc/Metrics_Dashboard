@@ -90,6 +90,7 @@ To demonstrate the success of achieving the SLO for 99.95% application uptime pe
 1. Percentage of CPU and memory consumption in the last 1 month (for saturation).
 2. Percentage of Infrastructure uptime in the last 1 month (for traffic).
 3. Percentage of request response time less than 250 milliseconds (for latency).
+4. The number of errors in the last 24 hours.
 
 ## Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create KPIs to accurately measure these metrics. We will make a dashboard for this, but first write them down here.
