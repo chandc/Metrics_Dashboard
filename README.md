@@ -86,9 +86,26 @@ For demonstration purposes, I would collect KPIs for a 24 hours period.
 1. CPU consumption should be less than 80%.
 2. Memory consumption should be less than 80%.
 3. Percentage of infrastructure uptime should be higher than 99.99%.
-4. Percentage of request response time less than 250 milliseconds should be higher than 99.99%.
+4. Uptime for containers running Frontend and Backend services should show no interruptions.
+5. Percentage of request response time less than 250 milliseconds should be higher than 99.99%.
+6. 90 percentile of successful requests should take less than 100 ms to complete.
+7. There should not be any 500 errors in the last 24 hours.
 
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
+
+"CPU consumption by all services" measures the average CPU usage at 30 sec internals.
+
+"Memory consumption by all services" measures the instanteous memory consumption as a percentage of the system memory (8GB in this case).
+
+"Uptime for Frontend and Backend services in the last 24 hours" measures the average uptime for all the pods that are running the Frontend and Backend services in the last 24 hours.
+
+"Successful requests under 250 mess" measures the percentage of requests with a 200 status code that received a response in less than or equal to 250 msecs.
+
+"P90 response time (msecs) for successful requests"  measures the 90 percentile of response times for Frontend and Backend API requests as a function of time in the last 24 hours.
+
+"Number of Exceptions (500 errors)" measures the number of 500 errors as a function of time in the last 24 hours.
+
+"Uptime for frontend and backend services" measures the up or down state of the Frontend and Backend services in the last 24 hours.
 
 ![KPIs](answer-img/KPIs.png)
