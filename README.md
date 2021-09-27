@@ -6,7 +6,10 @@
 
 ![monitoring_screenshot](answer-img/monitoring_screenshot.png)
 
+![observability_screenshot](answer-img/observability_screenshot.png)
+
 ## Setup the Jaeger and Prometheus source
+
 *TODO:* Expose Grafana to the internet and then setup Prometheus as a data source. Provide a screenshot of the home page after logging into Grafana.
 
 ![Grafana_screenshot](answer-img/Grafana_screenshot.png)
@@ -39,9 +42,19 @@ I would follow the "4 Golden Signals" guideline and system uptime:
 ## Create a Dashboard to measure our SLIs
 *TODO:* Create a dashboard to measure the uptime of the frontend and backend services We will also want to measure to measure 40x and 50x errors. Create a dashboard that show these values over a 24 hour period and take a screenshot.
 
+I have included in the dashboard 6 KPIs:
+
+- CPU and memory consumption (for saturation)
+- Percentage uptime in the last 24 hours (for uptime)
+- 4XX and 5XX errors as a function of time (for errors)
+- Average number of requests per min (for traffic)
+
 ![Up_400_500](answer-img/Up_400_500.png)
 
+
+
 ## Tracing our Flask App
+
 *TODO:*  We will create a Jaeger span to measure the processes on the backend. Once you fill in the span, provide a screenshot of it here.
 
 ![Backend_Jaeger_Trace](answer-img/Backend_Jaeger_Trace.png)
@@ -90,15 +103,16 @@ For demonstration purposes, I would collect KPIs for a 24 hours period.
 5. Percentage of request response time less than 250 milliseconds should be higher than 99.99%.
 6. 90 percentile of successful requests should take less than 100 ms to complete.
 7. There should not be any 500 errors in the last 24 hours.
+8. Average number of requests per minute should be less than 100.
 
 ## Final Dashboard
 *TODO*: Create a Dashboard containing graphs that capture all the metrics of your KPIs and adequately representing your SLIs and SLOs. Include a screenshot of the dashboard here, and write a text description of what graphs are represented in the dashboard.  
 
 "CPU consumption by all services" measures the average CPU usage at 30 sec internals.
 
-"Memory consumption by all services" measures the instanteous memory consumption as a percentage of the system memory (8GB in this case).
+"Memory consumption by all services" measures the instantaneous memory consumption as a percentage of the system memory (8GB in this case).
 
-"Uptime for Frontend and Backend services in the last 24 hours" measures the average uptime for all the pods that are running the Frontend and Backend services in the last 24 hours.
+"Uptime for frontend and backend services" measures the up or down state of the Frontend and Backend services in the last 24 hours.
 
 "Successful requests under 250 mess" measures the percentage of requests with a 200 status code that received a response in less than or equal to 250 msecs.
 
@@ -106,6 +120,8 @@ For demonstration purposes, I would collect KPIs for a 24 hours period.
 
 "Number of Exceptions (500 errors)" measures the number of 500 errors as a function of time in the last 24 hours.
 
-"Uptime for frontend and backend services" measures the up or down state of the Frontend and Backend services in the last 24 hours.
+"Uptime for frontend and backend services" show the up and down states of these services.
+
+"Average number frequents per minute" measures average the number of requests over 1 minutes intervals.
 
 ![KPIs](answer-img/KPIs.png)
