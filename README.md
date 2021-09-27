@@ -88,9 +88,9 @@ Description: The MongoDB has not been set up correctly for the /star endpoint in
 To demonstrate the success of achieving the SLO for 99.95% application uptime per month, I would measure 3 of the "Four Golden Signals", namely:
 
 1. Percentage of CPU and memory consumption in the last 1 month (for saturation).
-2. Percentage of Infrastructure uptime in the last 1 month (for traffic).
+2. Percentage of Infrastructure uptime in the last 1 month (for error).
 3. Percentage of request response time less than 250 milliseconds (for latency).
-4. The number of errors in the last 24 hours.
+4. The average number of requests per minute in the last 24 hours (for traffic).
 
 ## Building KPIs for our plan
 *TODO*: Now that we have our SLIs and SLOs, create KPIs to accurately measure these metrics. We will make a dashboard for this, but first write them down here.
